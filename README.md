@@ -64,49 +64,102 @@ result.flight_time_minutes  # 123
 
 The Haversine formula computes the great-circle distance between two points on a sphere. It uses the Earth's mean radius (R = 6,371 km) as a spherical approximation, which introduces a maximum error of about 0.3% compared to the true ellipsoidal distance. For most applications -- route planning, city-to-city comparisons, flight distance estimation -- this is more than sufficient.
 
+| Distance Unit | Abbreviation | Relative to 1 km | Common Use |
+|---------------|-------------|-------------------|------------|
+| Kilometer | km | 1.0 | Worldwide standard |
+| Mile (statute) | mi | 0.6214 | US, UK road distances |
+| Nautical mile | nmi | 0.5400 | Aviation, maritime navigation |
+| Meter | m | 1,000 | Walking, urban distances |
+| Foot | ft | 3,280.84 | US/UK altitude, short distances |
+
 ```python
 from distancefyi import haversine_distance, km_to_miles, km_to_nautical_miles
 
-# Distance in different units
+# Great-circle distance between New York and London
 km = haversine_distance(40.7128, -74.0060, 51.5074, -0.1278)  # NYC to London
-miles = km_to_miles(km)                # 3,459 miles
-nm = km_to_nautical_miles(km)          # 3,005 nautical miles
+miles = km_to_miles(km)                # 3,459 statute miles
+nm = km_to_nautical_miles(km)          # 3,005 nautical miles (used in aviation)
 ```
 
 For sub-meter precision (surveying, geodesy), you would need Vincenty's formula on the WGS84 ellipsoid, which accounts for the Earth's equatorial bulge. The Haversine formula treats the Earth as a perfect sphere, so it slightly underestimates distances near the equator and overestimates near the poles.
+
+Learn more: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · [Browse Cities](https://distancefyi.com/city/) · [Browse Countries](https://distancefyi.com/country/)
 
 ## Navigation & Bearing
 
 The initial bearing (forward azimuth) is the compass direction you would face when starting a journey along the great-circle route. Unlike a rhumb line (constant compass bearing), a great-circle route's bearing changes continuously along the path -- this is why flight paths on a Mercator map appear curved.
 
+| Compass Direction | Abbreviation | Degree Range |
+|-------------------|-------------|-------------|
+| North | N | 348.75 -- 11.25 |
+| North-Northeast | NNE | 11.25 -- 33.75 |
+| Northeast | NE | 33.75 -- 56.25 |
+| East-Northeast | ENE | 56.25 -- 78.75 |
+| East | E | 78.75 -- 101.25 |
+| East-Southeast | ESE | 101.25 -- 123.75 |
+| Southeast | SE | 123.75 -- 146.25 |
+| South-Southeast | SSE | 146.25 -- 168.75 |
+| South | S | 168.75 -- 191.25 |
+| South-Southwest | SSW | 191.25 -- 213.75 |
+| Southwest | SW | 213.75 -- 236.25 |
+| West-Southwest | WSW | 236.25 -- 258.75 |
+| West | W | 258.75 -- 281.25 |
+| West-Northwest | WNW | 281.25 -- 303.75 |
+| Northwest | NW | 303.75 -- 326.25 |
+| North-Northwest | NNW | 326.25 -- 348.75 |
+
 ```python
 from distancefyi import bearing, compass_direction, great_circle_points, antipodal_point
 
-# Initial bearing from New York to London
+# Initial bearing from New York to London (great-circle route)
 b = bearing(40.7128, -74.0060, 51.5074, -0.1278)  # 51.2 degrees
-compass_direction(b)                                 # "NE"
+compass_direction(b)                                 # "NE" (Northeast)
 
-# Generate waypoints along the great-circle arc
+# Generate waypoints along the great-circle arc for route visualization
 points = great_circle_points(40.7128, -74.0060, 51.5074, -0.1278, num_points=10)
 
-# Antipodal point (diametrically opposite on Earth)
+# Antipodal point -- diametrically opposite location on Earth
 lat, lon = antipodal_point(40.7128, -74.0060)  # (-40.7128, 105.994)
 ```
 
 The 16-point compass rose divides 360 degrees into directions: N, NNE, NE, ENE, E, ESE, SE, SSE, S, SSW, SW, WSW, W, WNW, NW, NNW. Each sector spans 22.5 degrees.
 
+Learn more: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · [City Routes](https://distancefyi.com/city/)
+
 ## Travel Time Estimates
+
+Travel time estimates use realistic speed models that account for acceleration, deceleration, rest stops, and real-world conditions rather than simple distance-over-speed division.
+
+| Travel Mode | Average Speed | Includes | Best For |
+|-------------|--------------|----------|----------|
+| Flight | 850 km/h cruise | Taxi, climb, descent, approach | Distances > 300 km |
+| Driving | 80 km/h average | Rest stops, speed variation | 50 -- 2,000 km |
+| Walking | 5 km/h | Steady pace, no stops | < 30 km |
+
+| Distance Band | Flight Time | Drive Time | Walk Time |
+|---------------|------------|------------|-----------|
+| 500 km | ~70 min | ~6 h | ~4 days |
+| 1,000 km | ~110 min | ~12.5 h | ~8 days |
+| 5,000 km | ~390 min | ~62.5 h | ~42 days |
+| 10,000 km | ~740 min | ~125 h | ~83 days |
 
 ```python
 from distancefyi import estimate_flight_time, estimate_drive_time, estimate_walk_time
 
-km = 1159  # Seoul to Tokyo
+# Seoul to Tokyo distance in kilometers
+km = 1159
 
-# Realistic models with acceleration/deceleration phases
-estimate_flight_time(km)   # ~123 minutes (cruising at 850 km/h + taxi/climb/descent)
-estimate_drive_time(km)    # ~870 minutes (average 80 km/h with rest stops)
-estimate_walk_time(km)     # ~13,908 minutes (5 km/h)
+# Realistic flight time with taxi, climb, cruise, and descent phases
+estimate_flight_time(km)   # ~123 minutes (cruising at 850 km/h)
+
+# Driving time with average highway speed and rest stops
+estimate_drive_time(km)    # ~870 minutes (average 80 km/h)
+
+# Walking time at a steady 5 km/h pace
+estimate_walk_time(km)     # ~13,908 minutes
 ```
+
+Learn more: [Flight Time Calculator](https://distancefyi.com/tools/flight-time/) · [City Distance Routes](https://distancefyi.com/city/) · [Country Distances](https://distancefyi.com/country/)
 
 ## Command-Line Interface
 
