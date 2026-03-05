@@ -46,6 +46,10 @@ Add to your `claude_desktop_config.json`:
 - Computing geographic midpoints for meeting locations
 - Creating bounding boxes for geospatial queries
 
+## Demo
+
+![DistanceFYI CLI Demo](https://raw.githubusercontent.com/fyipedia/distancefyi/main/demo.gif)
+
 ## Links
 
 - [Distance Calculator](https://distancefyi.com/) -- Calculate distances between any two places
