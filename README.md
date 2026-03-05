@@ -8,6 +8,10 @@ Pure Python distance engine for developers. Compute [Haversine great-circle dist
 
 > **Explore distances between world cities at [distancefyi.com](https://distancefyi.com/)** -- [distance calculator](https://distancefyi.com/tools/distance-calculator/), city-to-city routes, and travel time estimates.
 
+<p align="center">
+  <img src="demo.gif" alt="distancefyi CLI demo" width="800">
+</p>
+
 ## Install
 
 ```bash
