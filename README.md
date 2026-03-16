@@ -1,6 +1,6 @@
 # distancefyi
 
-[![PyPI](https://img.shields.io/pypi/v/distancefyi)](https://pypi.org/project/distancefyi/)
+[![PyPI version](https://agentgif.com/badge/pypi/distancefyi/version.svg)](https://pypi.org/project/distancefyi/)
 [![Python](https://img.shields.io/pypi/pyversions/distancefyi)](https://pypi.org/project/distancefyi/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
