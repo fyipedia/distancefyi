@@ -83,9 +83,7 @@ nm = km_to_nautical_miles(km)          # 3,005 nautical miles (used in aviation)
 
 For sub-meter precision (surveying, geodesy), you would need Vincenty's formula on the WGS84 ellipsoid, which accounts for the Earth's equatorial bulge. The Haversine formula treats the Earth as a perfect sphere, so it slightly underestimates distances near the equator and overestimates near the poles.
 
-Learn more: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · [Browse Cities](https://distancefyi.com/city/) · [Browse Countries](https://distancefyi.com/country/)
-
-## Navigation & Bearing
+Learn more: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · ## Navigation & Bearing
 
 The initial bearing (forward azimuth) is the compass direction you would face when starting a journey along the great-circle route. Unlike a rhumb line (constant compass bearing), a great-circle route's bearing changes continuously along the path -- this is why flight paths on a Mercator map appear curved.
 
@@ -124,9 +122,7 @@ lat, lon = antipodal_point(40.7128, -74.0060)  # (-40.7128, 105.994)
 
 The 16-point compass rose divides 360 degrees into directions: N, NNE, NE, ENE, E, ESE, SE, SSE, S, SSW, SW, WSW, W, WNW, NW, NNW. Each sector spans 22.5 degrees.
 
-Learn more: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · [City Routes](https://distancefyi.com/city/)
-
-## Travel Time Estimates
+Learn more: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · ## Travel Time Estimates
 
 Travel time estimates use realistic speed models that account for acceleration, deceleration, rest stops, and real-world conditions rather than simple distance-over-speed division.
 
@@ -159,9 +155,7 @@ estimate_drive_time(km)    # ~870 minutes (average 80 km/h)
 estimate_walk_time(km)     # ~13,908 minutes
 ```
 
-Learn more: [Flight Time Calculator](https://distancefyi.com/tools/flight-time/) · [City Distance Routes](https://distancefyi.com/city/) · [Country Distances](https://distancefyi.com/country/)
-
-## Command-Line Interface
+Learn more: ## Command-Line Interface
 
 ```bash
 pip install "distancefyi[cli]"
@@ -266,9 +260,7 @@ Full [API documentation](https://distancefyi.com/developers/) at distancefyi.com
 
 ## Learn More About Distance
 
-- **Tools**: [Distance Calculator](https://distancefyi.com/) · [Flight Time Calculator](https://distancefyi.com/tools/flight-time/)
-- **Browse**: [Cities](https://distancefyi.com/city/) · [Countries](https://distancefyi.com/country/)
-- **Guides**: [Glossary](https://distancefyi.com/glossary/) · [Blog](https://distancefyi.com/blog/)
+- **Tools**: [Distance Calculator](https://distancefyi.com/) · - **Browse**: - **Guides**: [Glossary](https://distancefyi.com/glossary/) · [Blog](https://distancefyi.com/blog/)
 - **API**: [REST API Docs](https://distancefyi.com/developers/) · [OpenAPI Spec](https://distancefyi.com/api/openapi.json)
 
 ## Utility FYI Family
