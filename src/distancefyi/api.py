@@ -1,14 +1,15 @@
 """HTTP API client for distancefyi.com REST endpoints.
 
-Requires: pip install distancefyi[api]
+Requires the ``api`` extra: ``pip install distancefyi[api]``
 
 Usage::
 
     from distancefyi.api import DistanceFYI
 
-    with DistanceFYI() as client:
-        result = client.distance("seoul", "tokyo")
-        print(result["distance_km"])
+    with DistanceFYI() as api:
+        items = api.list_cities()
+        detail = api.get_city("example-slug")
+        results = api.search("query")
 """
 
 from __future__ import annotations
@@ -19,62 +20,66 @@ import httpx
 
 
 class DistanceFYI:
-    """API client for the distancefyi.com REST API."""
+    """API client for the distancefyi.com REST API.
+
+    Provides typed access to all distancefyi.com endpoints including
+    list, detail, and search operations.
+
+    Args:
+        base_url: API base URL. Defaults to ``https://distancefyi.com``.
+        timeout: Request timeout in seconds. Defaults to ``10.0``.
+    """
 
     def __init__(
         self,
-        base_url: str = "https://distancefyi.com/api",
+        base_url: str = "https://distancefyi.com",
         timeout: float = 10.0,
     ) -> None:
         self._client = httpx.Client(base_url=base_url, timeout=timeout)
 
     def _get(self, path: str, **params: Any) -> dict[str, Any]:
-        resp = self._client.get(path, params={k: v for k, v in params.items() if v is not None})
+        resp = self._client.get(
+            path,
+            params={k: v for k, v in params.items() if v is not None},
+        )
         resp.raise_for_status()
         result: dict[str, Any] = resp.json()
         return result
 
-    def distance(self, from_city: str, to_city: str) -> dict[str, Any]:
-        """Get distance between two cities by slug.
+    # -- Endpoints -----------------------------------------------------------
 
-        Args:
-            from_city: City slug (e.g., "seoul", "new-york").
-            to_city: City slug (e.g., "tokyo", "london").
+    def list_cities(self, **params: Any) -> dict[str, Any]:
+        """List all cities."""
+        return self._get("/api/v1/cities/", **params)
 
-        Returns:
-            Dict with distance_km, distance_miles, bearing, etc.
-        """
-        return self._get(f"/distance/{from_city}-to-{to_city}/")
+    def get_city(self, slug: str) -> dict[str, Any]:
+        """Get city by slug."""
+        return self._get(f"/api/v1/cities/" + slug + "/")
 
-    def city(self, slug: str) -> dict[str, Any]:
-        """Get city information.
+    def list_countries(self, **params: Any) -> dict[str, Any]:
+        """List all countries."""
+        return self._get("/api/v1/countries/", **params)
 
-        Args:
-            slug: City slug (e.g., "seoul", "london").
+    def get_country(self, slug: str) -> dict[str, Any]:
+        """Get country by slug."""
+        return self._get(f"/api/v1/countries/" + slug + "/")
 
-        Returns:
-            Dict with name, country, coordinates, timezone, etc.
-        """
-        return self._get(f"/city/{slug}/")
+    def list_faqs(self, **params: Any) -> dict[str, Any]:
+        """List all faqs."""
+        return self._get("/api/v1/faqs/", **params)
 
-    def search(self, query: str, limit: int = 10) -> list[dict[str, Any]]:
-        """Search for cities by name.
+    def get_faq(self, slug: str) -> dict[str, Any]:
+        """Get faq by slug."""
+        return self._get(f"/api/v1/faqs/" + slug + "/")
 
-        Args:
-            query: Search query string.
-            limit: Maximum results to return.
+    def search(self, query: str, **params: Any) -> dict[str, Any]:
+        """Search across all content."""
+        return self._get(f"/api/v1/search/", q=query, **params)
 
-        Returns:
-            List of matching city dicts.
-        """
-        result = self._get("/search/", q=query, limit=limit)
-        if isinstance(result, list):
-            return list(result)
-        results: list[dict[str, Any]] = result.get("results", [])
-        return results
+    # -- Lifecycle -----------------------------------------------------------
 
     def close(self) -> None:
-        """Close the HTTP client."""
+        """Close the underlying HTTP client."""
         self._client.close()
 
     def __enter__(self) -> DistanceFYI:
