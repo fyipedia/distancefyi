@@ -275,6 +275,20 @@ Part of the [FYIPedia](https://fyipedia.com) open-source developer tools ecosyst
 | namefyi | [PyPI](https://pypi.org/project/namefyi/) | [npm](https://www.npmjs.com/package/namefyi) | Korean romanization & Five Elements -- [namefyi.com](https://namefyi.com/) |
 | **distancefyi** | [PyPI](https://pypi.org/project/distancefyi/) | [npm](https://www.npmjs.com/package/distancefyi) | Haversine distance & travel times -- [distancefyi.com](https://distancefyi.com/) |
 
+<!-- WIDGET-OSS-MONITOR: cross-links START -->
+
+## Related Resources
+
+- **Widget Hub**: [widget.earthfyi.com](https://widget.earthfyi.com/) — interactive widgets for the Geo FYI ecosystem
+- **Main Site**: [earthfyi.com](https://earthfyi.com/) — full reference
+- **Family Network**: see [/developers/](https://earthfyi.com/developers/) for sister packages
+
+## FYIPedia Ecosystem
+
+This package is part of the [FYIPedia](https://fyipedia.com) developer tools ecosystem. Sister packages in this family: see widget hub link above.
+
+<!-- WIDGET-OSS-MONITOR: cross-links END -->
+
 ## License
 
 MIT
