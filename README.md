@@ -83,7 +83,7 @@ nm = km_to_nautical_miles(km)          # 3,005 nautical miles (used in aviation)
 
 For sub-meter precision (surveying, geodesy), you would need Vincenty's formula on the WGS84 ellipsoid, which accounts for the Earth's equatorial bulge. The Haversine formula treats the Earth as a perfect sphere, so it slightly underestimates distances near the equator and overestimates near the poles.
 
-Learn more: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · [Browse Cities](https://distancefyi.com/city/) · [Browse Countries](https://distancefyi.com/country/)
+Learn more: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · [Browse Countries](https://distancefyi.com/countries/) · [All Tools](https://distancefyi.com/tools/)
 
 ## Navigation & Bearing
 
@@ -124,7 +124,7 @@ lat, lon = antipodal_point(40.7128, -74.0060)  # (-40.7128, 105.994)
 
 The 16-point compass rose divides 360 degrees into directions: N, NNE, NE, ENE, E, ESE, SE, SSE, S, SSW, SW, WSW, W, WNW, NW, NNW. Each sector spans 22.5 degrees.
 
-Learn more: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · [City Routes](https://distancefyi.com/city/)
+Learn more: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · [Sample Route: Seoul → Tokyo](https://distancefyi.com/distance/seoul-to-tokyo/)
 
 ## Travel Time Estimates
 
@@ -159,7 +159,7 @@ estimate_drive_time(km)    # ~870 minutes (average 80 km/h)
 estimate_walk_time(km)     # ~13,908 minutes
 ```
 
-Learn more: [Flight Time Calculator](https://distancefyi.com/tools/flight-time/) · [City Distance Routes](https://distancefyi.com/city/) · [Country Distances](https://distancefyi.com/country/)
+Learn more: [Distance Calculator (with travel time)](https://distancefyi.com/tools/distance-calculator/) · [Sample Route: Paris → Rome](https://distancefyi.com/distance/paris-to-rome/) · [Country Browser](https://distancefyi.com/countries/)
 
 ## Command-Line Interface
 
@@ -266,8 +266,8 @@ Full [API documentation](https://distancefyi.com/developers/) at distancefyi.com
 
 ## Learn More About Distance
 
-- **Tools**: [Distance Calculator](https://distancefyi.com/) · [Flight Time Calculator](https://distancefyi.com/tools/flight-time/)
-- **Browse**: [Cities](https://distancefyi.com/city/) · [Countries](https://distancefyi.com/country/)
+- **Tools**: [Distance Calculator](https://distancefyi.com/tools/distance-calculator/) · [All Tools](https://distancefyi.com/tools/)
+- **Browse**: [Countries](https://distancefyi.com/countries/) · [Sample Routes](https://distancefyi.com/distance/seoul-to-tokyo/)
 - **Guides**: [Glossary](https://distancefyi.com/glossary/) · [Blog](https://distancefyi.com/blog/)
 - **API**: [REST API Docs](https://distancefyi.com/developers/) · [OpenAPI Spec](https://distancefyi.com/api/openapi.json)
 
@@ -282,6 +282,12 @@ Part of the [FYIPedia](https://fyipedia.com) open-source developer tools ecosyst
 | holidayfyi | [PyPI](https://pypi.org/project/holidayfyi/) | [npm](https://www.npmjs.com/package/holidayfyi) | Holiday dates & Easter calculation -- [holidayfyi.com](https://holidayfyi.com/) |
 | namefyi | [PyPI](https://pypi.org/project/namefyi/) | [npm](https://www.npmjs.com/package/namefyi) | Korean romanization & Five Elements -- [namefyi.com](https://namefyi.com/) |
 | **distancefyi** | [PyPI](https://pypi.org/project/distancefyi/) | [npm](https://www.npmjs.com/package/distancefyi) | Haversine distance & travel times -- [distancefyi.com](https://distancefyi.com/) |
+
+## Featured City Pairs (curated)
+
+For ready-to-use city-to-city distance examples, see [DistanceFYI's curated pair pages](https://distancefyi.com/distance/seoul-to-tokyo/) — top 100 high-traffic routes hand-selected for accuracy and travel relevance, including [Seoul to Tokyo](https://distancefyi.com/distance/seoul-to-tokyo/), [London to New York](https://distancefyi.com/distance/london-to-new-york/), [Paris to Rome](https://distancefyi.com/distance/paris-to-rome/), and 97 more popular routes. Each pair page includes Haversine distance, compass bearing, midpoint coordinates, and realistic flight time estimates computed by this package's engine.
+
+The full city dataset at [distancefyi.com](https://distancefyi.com/) covers 25,000+ cities across [200+ countries](https://distancefyi.com/countries/) with multilingual names in 15 languages.
 
 ## Embed Widget
 
