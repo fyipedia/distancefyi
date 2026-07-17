@@ -1,0 +1,10 @@
+# Smithery configuration for distancefyi
+# https://smithery.ai/docs/build/project-config
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: []
+    properties: {}
+  commandFunction: |-
+    config => ({ command: 'uvx', args: ['--from', 'distancefyi[mcp]', 'python', '-m', 'distancefyi.mcp_server'] })
